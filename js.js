@@ -61,6 +61,8 @@ comics.forEach((comic)=>{
 })
 
 
+
+
     
 let botonCarrito = document.getElementById("botonCarrito")
 let modalBody = document.getElementById("modal-body")
@@ -101,11 +103,12 @@ function compraTotal(array){
     acumulador = array.reduce((acumulador, productoCarrito)=>{
         return acumulador + productoCarrito.valor
     },0)
+    console.log(`el total ${acumulador}`)
     if(acumulador == 0){
-        parrafoCompra.innerHTML = `<strong>No hay productos en el carrito</strong>`
+        parrafoCompra.innerHTML = ""
     }
     else{
-        parrafoCompra.innerHTML = `El total de su carrito es ${acumulador}`
+        parrafoCompra.innerHTML = `El total de su compra es ${acumulador}`
     }
 }
 
