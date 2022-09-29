@@ -20,7 +20,8 @@ const comic6 = new comic(6,"La secta " ,4000 , "Batman" , "la secta.jpg")
 const comic7 =new comic (7, "Las 4 estaciones" , 4500 , "Superman" , "las 4 estaciones.jpg")
 const comic8 = new comic(8 , "House of M" , 5000 , "x-men" , "House of M.jpg")
 const comic9 =new comic (9, "el libro de ezequiel", 5500 , "Spiderman", "el libro de ezequiel.jpg")
-let carrito = []
+
+let productoEnCarrito = []
 let comics = []
 
 if (localStorage.getItem("comics")){
@@ -40,63 +41,71 @@ comics.forEach((comic)=>{
       <h4 class="card-title">${comic.titulo}</h4>
       <h5>${comic.personaje}
       <p class="card-text">El valor del comic es de ${comic.valor}</p>
-      <button id="agregarBtn${comic.id}" class="btn btn-outline-success btnComprar">Agregar al carrito</button>
+      <button id="agregarBtn ${comic.id}" " class="agregarBtn btn-outline-success btnComprar ${comic.id}">Agregar al carrito</button>
       </div>
   </div>`
     contenedor.append(muestraComic)
- let btnAgregar = document.getElementById( ` agregarBtn ${comic.id}`)
- console.log(btnAgregar)
- btnAgregar.addEventListener("click" , ()=>{
-    console.log(comic)
-    agregarAlCarrito(comic)
- })
+    
+     let btnCompra = document.getElementsByClassName(`btnComprar ${comic.id}`)
+     for(let compra of btnCompra){
+     compra.addEventListener("click", ()=>{
+        console.log(comic)
+        agregarAlCarrito(comic)
+    
+     })
+     }
+     function agregarAlCarrito(comic){
+        productoEnCarrito.push(comic)
+    }
+
 })
-let btnCompra = document.getElementsByClassName("btnComprar")
-for(let compra of btnCompra){
-    compra.addEventListener("click" , ()=>{
-        alert("el producto ha sido comprado")
-    })
-    function agregarAlCarrito(comic){
-        productosEnCarrito.push(comic)
-        console.log(productosEnCarrito)
-    }}
+
+
     
 let botonCarrito = document.getElementById("botonCarrito")
 let modalBody = document.getElementById("modal-body")
 let botonFinalizarCompra = document.getElementById("botonFinalizarCompra")
 let parrafoCompra = document.getElementById(`precioTotal`)    
-botonCarrito.addEventListener("click" , () =>{
-    cargarProductosCarrito(productosEnCarrito)
-})
+
 function cargarProductosCarrito(array){
-modalBody.innerHTML=""
-array.forEach((prductoCarrito) =>{
-    modalBody.innerHTML +=
-  `  <div class="card border-primary mb-3" id ="productoCarrito${productoCarrito.id}" style="max-width: 540px;">
-   
-    <div class="card-body">
-            <h4 class="card-title">${productoCarrito.titulo}</h4>
-        
-            <p class="card-text">$${productoCarrito.precio}</p> 
-            <button class= "btn btn-danger" id="botonEliminar"><i class="fas fa-trash-alt"></i></button>
+
+    modalBody.innerHTML = ""
+    array.forEach((productoCarrito)=>{
+
+        modalBody.innerHTML += `
+        <div class="card border-primary mb-3" id ="productoCarrito${productoCarrito.id}" style="max-width: 540px;">
+            <img class="card-img-top" src="./img/${productoCarrito.imagen}" alt="${productoCarrito.titulo}">
+            <div class="card-body">
+                    <h4 class="card-title">${productoCarrito.titulo}</h4>
+                
+                    <p class="card-text">$${productoCarrito.valor}</p> 
+            <p class="card-text">$${productoCarrito.valor}</p> 
+                    <p class="card-text">$${productoCarrito.valor}</p> 
+                    <button class= "btn btn-danger" id="botonEliminar"><i class="fas fa-trash-alt"></i></button>
+            </div>    
     </div>    
+            </div>    
+        
+        
+        </div>
+`
 
-
-</div>`
-compraTotal(array)
-
-})
-
+    })
+    
+    compraTotal(array)
 }
+
 function compraTotal(array){
-    let acumulador =0
-    acumulador = array.reduce((acumulador, productoCarrito) =>{
-        return acumulador + productoCarrito.precio
-    }, 0 )
-    if (acumulador == 0){
-        parrafoCompra.innerHTML = ("no hay productos en la compra")
-    }else{
-        parrafoCompra.innerHTML = `el total del carrito es de ${acumulador}`
+    let acumulador = 0
+
+    acumulador = array.reduce((acumulador, productoCarrito)=>{
+        return acumulador + productoCarrito.valor
+    },0)
+    if(acumulador == 0){
+        parrafoCompra.innerHTML = `<strong>No hay productos en el carrito</strong>`
+    }
+    else{
+        parrafoCompra.innerHTML = `El total de su carrito es ${acumulador}`
     }
 }
 
