@@ -62,19 +62,19 @@ comics.forEach((comic)=>{
 
 function agregarAlCarrito(comic){
     productoEnCarrito.push(comic)
-console.log(agregarAlCarrito)
-
+    cargarProductosCarrito(productoEnCarrito)
+    localStorage.setItem(cargarProductosCarrito)
+    localStorage.setItem(productoEnCarrito)
 }
+localStorage.getItem(cargarProductosCarrito)
+localStorage.getItem(productoEnCarrito)
 
-console.log(productoEnCarrito)
 let botonCarrito = document.getElementById("botonCarrito")
-console.log(botonCarrito)
 let modalBody = document.getElementById("modal-body")
-console.log(modalBody)
+
 let botonFinalizarCompra = document.getElementById("botonFinalizarCompra")
-console.log(botonFinalizarCompra)
+
 let parrafoCompra = document.getElementById(`precioTotal`)    
-console.log(parrafoCompra)
 
 function cargarProductosCarrito(array){
 
@@ -94,7 +94,7 @@ function cargarProductosCarrito(array){
     
     compraTotal(array)
 }
-console.log(cargarProductosCarrito)
+
 function compraTotal(array){
     let acumulador = 0
 
@@ -109,7 +109,7 @@ function compraTotal(array){
         parrafoCompra.innerHTML = `El total de su compra es ${acumulador}`
     }
 }
-console.log(compraTotal)
+
 btnDarkMode.addEventListener ("click" , ()=>{
     console.log("Funciona btn oscuro")
     document.body.style.backgroundColor="black" 
