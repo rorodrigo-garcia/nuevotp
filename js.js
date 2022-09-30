@@ -79,15 +79,16 @@ console.log(parrafoCompra)
 function cargarProductosCarrito(array){
 
     modalBody.innerHTML = ""
-    array.forEach((productoCarrito)=>{
+    array.forEach((comic)=>{
 
-        modalBody.innerHTML += `<div class="card" style="width: 18rem;">
-        <img src="./img/${productoCarrito.id}" class="card-img-top" alt="${productoCarrito.id}">
-        <div class="card-body">
-          <h5 class="card-title">${productoCarrito.titulo}</h5>
-          <p class="card-text">${productoCarrito.titulo}</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
+        modalBody.innerHTML += ` <div id= "${comic.id}"class="card" style="width: 18rem;">
+        <img src="./img/${comic.imagen}" class="card-img-top" alt="${comic.titulo} de ${comic.personaje} ">
+        <div class="card-body"
+          <h4 class="card-title">${comic.titulo}</h4>
+          <h5>${comic.personaje}
+          <p class="card-text">El valor del comic es de ${comic.valor}</p>
+          <button id="agregarBtn ${comic.id}" " class="agregarBtn btn-outline-success btnComprar ${comic.id}">Agregar al carrito</button>
+          </div>
       </div>`
     })
     
@@ -108,7 +109,7 @@ function compraTotal(array){
         parrafoCompra.innerHTML = `El total de su compra es ${acumulador}`
     }
 }
-
+console.log(compraTotal)
 btnDarkMode.addEventListener ("click" , ()=>{
     console.log("Funciona btn oscuro")
     document.body.style.backgroundColor="black" 
