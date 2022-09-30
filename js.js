@@ -54,49 +54,44 @@ comics.forEach((comic)=>{
     
      })
      }
-     function agregarAlCarrito(comic){
-        productoEnCarrito.push(comic)
-    }
+   
 
 })
 
 
 
+function agregarAlCarrito(comic){
+    productoEnCarrito.push(comic)
+}
 
-    
+console.log(productoEnCarrito)
 let botonCarrito = document.getElementById("botonCarrito")
+console.log(botonCarrito)
 let modalBody = document.getElementById("modal-body")
+console.log(modalBody)
 let botonFinalizarCompra = document.getElementById("botonFinalizarCompra")
+console.log(botonFinalizarCompra)
 let parrafoCompra = document.getElementById(`precioTotal`)    
+console.log(parrafoCompra)
 
 function cargarProductosCarrito(array){
 
     modalBody.innerHTML = ""
     array.forEach((productoCarrito)=>{
 
-        modalBody.innerHTML += `
-        <div class="card border-primary mb-3" id ="productoCarrito${productoCarrito.id}" style="max-width: 540px;">
-            <img class="card-img-top" src="./img/${productoCarrito.imagen}" alt="${productoCarrito.titulo}">
-            <div class="card-body">
-                    <h4 class="card-title">${productoCarrito.titulo}</h4>
-                
-                    <p class="card-text">$${productoCarrito.valor}</p> 
-            <p class="card-text">$${productoCarrito.valor}</p> 
-                    <p class="card-text">$${productoCarrito.valor}</p> 
-                    <button class= "btn btn-danger" id="botonEliminar"><i class="fas fa-trash-alt"></i></button>
-            </div>    
-    </div>    
-            </div>    
-        
-        
+        modalBody.innerHTML += `<div class="card" style="width: 18rem;">
+        <img src="./img/${productoCarrito.id}" class="card-img-top" alt="${productoCarrito.id}">
+        <div class="card-body">
+          <h5 class="card-title">${productoCarrito.titulo}</h5>
+          <p class="card-text">${productoCarrito.titulo}</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
-`
-
+      </div>`
     })
     
     compraTotal(array)
 }
-
+console.log(cargarProductosCarrito)
 function compraTotal(array){
     let acumulador = 0
 
@@ -134,6 +129,6 @@ btnEliminarMode.addEventListener("click" , ()=>{
 })
 
 
-
+console.log(agregarAlCarrito)
 
 
