@@ -62,6 +62,8 @@ comics.forEach((comic)=>{
 
 function agregarAlCarrito(comic){
     productoEnCarrito.push(comic)
+console.log(agregarAlCarrito)
+
 }
 
 console.log(productoEnCarrito)
@@ -129,6 +131,6 @@ btnEliminarMode.addEventListener("click" , ()=>{
 })
 
 
-console.log(agregarAlCarrito)
+
 
 
